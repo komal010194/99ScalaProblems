@@ -8,17 +8,19 @@ object NthElement {
 
 
     //println(secondLastRecursive(List(1,2,3,4,5,6,7,8), 3))
-
-    println(nth(List(1, 2, 3, 4, 5, 6, 7, 8), 3))
-    println(nth(List('1', '2', '3', '4', '5', '6', '7', '8'), 3))
+//
+//    println(nth(List(1, 2, 3, 4, 5, 6, 7, 8), 3))
+//    println(nth(List('1', '2', '3', '4', '5', '6', '7', '8'), 3))
+    println(findNthElement(List(1, 2, 3, 4, 5, 6, 7, 8), 3))
+   println(findNthElement(List('1', '2', '3', '4', '5', '6', '7', '8'), 3))
   }
 
   def secondLastRecursive(numList: List[Int], n: Int): Int = {
-    var secondLastElement = 0
+    var nthElement = 0
     for (i <- 0 until numList.length) {
-      if (i == numList.length - n) secondLastElement = numList(i)
+      if (i == numList.length - n) nthElement = numList(i)
     }
-    secondLastElement
+    nthElement
 
 
   }
@@ -37,5 +39,15 @@ object NthElement {
       }
 
     nthElem(list, (0, n))
+  }
+
+  // using foldLeft
+
+  def findNthElement[A](ls: List[A], index: Int): A ={
+    val resList = ls.foldLeft(List[A]()) {
+      (resultList, eachElement)  => if(ls.indexOf(eachElement) == index) return resultList.:+(eachElement).head
+      else List[A]()
+    }
+    resList.head
   }
 }

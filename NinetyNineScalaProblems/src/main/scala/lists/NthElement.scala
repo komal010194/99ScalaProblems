@@ -1,5 +1,7 @@
 package lists
 
+import scala.annotation.tailrec
+
 object NthElement {
 
   def main(args: Array[String]): Unit = {
@@ -22,6 +24,7 @@ object NthElement {
   }
 
   def nth[A](list: List[A], n: Int): Option[A] = {
+    @tailrec
     def nthElem[A](list: List[A], acc: (Int, Int)): Option[A] =
       list match {
         case Nil => None
